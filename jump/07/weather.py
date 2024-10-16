@@ -27,7 +27,7 @@ serviceKey = "ROAwUM52Kz%2BefjQmw0kFhGebke%2BXDkNLBgoIgosL3GaLBn9KStstxEsLbWS0M6
 nx='55'
 ny='125'
 #날짜시간
-base_date = "20231016"
+base_date = "20241016"
 base_time = "0600"
 
 #url
