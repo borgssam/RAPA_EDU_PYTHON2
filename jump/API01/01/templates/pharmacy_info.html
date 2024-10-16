@@ -1,0 +1,53 @@
+<!-- templates/pharmacy_list.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>약국 정보</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>약국 정보</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>주소</th>
+                <th>전화번호</th>
+                <th>진료시간</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pharmacy in pharmacies %}
+            <tr>
+                <td>{{ pharmacy.이름 }}</td>
+                <td>{{ pharmacy.주소 }}</td>
+                <td>{{ pharmacy.전화번호 }}</td>
+                <td>
+                    월요일: {{ pharmacy.진료시간.월요일 }}<br>
+                    화요일: {{ pharmacy.진료시간.화요일 }}<br>
+                    수요일: {{ pharmacy.진료시간.수요일 }}<br>
+                    목요일: {{ pharmacy.진료시간.목요일 }}<br>
+                    금요일: {{ pharmacy.진료시간.금요일 }}<br>
+                    토요일: {{ pharmacy.진료시간.토요일 }}<br>
+                    일요일: {{ pharmacy.진료시간.일요일 }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
