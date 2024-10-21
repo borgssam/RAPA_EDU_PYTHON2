@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Leaflet Quick Start Guide</title>
+    <!-- Leaf css/js 를 추가해준다. -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+    <script type="text/javascript" src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+    <!-- Cluster -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <style type="text/css">
+        #mapid { height: 1000px; }
+    </style>
+</head>
+<body>
+<!-- 맵을 넣을 div 요수 -->
+<div id="mapid"></div>
+<script type="text/javascript">
+    function fetchData(callback) {
+        fetch('"C:\EDU\edu_python\semiproject\templates\SF_company_list.json"')  // 'data.json' 파일 경로
+                    .then(response => response.json())  // JSON 형식으로 변환
+                    .then(data => {
+                        callback(data);
+                    })
+                    .catch(error => console.error('Error:', error));
+    }
+    // json 파일 읽기
+    fetchData((data) => {
+        let SF_company_json = data;
+        SF_company_length = SF_company_json.length
+        // 지도
+        var map = L.map("mapid").setView([36.505901, 128.011439], 8);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+        var markers = L.markerClusterGroup();
+        var step;
+        for (step=0; step < SF_company_length; step++){
+            address = SF_company_json[step]['주소'];
+            x = SF_company_json[step]['x'];
+            y = SF_company_json[step]['y'];
+            // console.log(SF_company_length)
+            if (x == 'no_data' || y == 'no_data'){
+                continue;
+            }
+            // 마커 추가
+            markers.addLayer(L.marker([x, y]));
+        }
+        map.addLayer(markers);
+    })
+</script>
+</body>
+</html>
