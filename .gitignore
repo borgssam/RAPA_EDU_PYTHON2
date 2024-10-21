@@ -1,0 +1,11 @@
+# Python bytecode files
+__pycache__/
+*.pyc
+venv/
+*.env
+rapa310/
+rapa3103/
+rapa311/
+jump/
+pandas-data-analysis-main/
+myblog/
