@@ -92,6 +92,60 @@ Day 2
     sns.barplot(데이터프래임) : 막대그래프
     sns.boxplot(데이터프래임) : 박스플롯
     sns.violineplot(데이터프래임) : 바이올린 플롯
+
+Day 3 
+데이터 전처리
+이상치 : 다른값 확연히 차이나는 값, 데이터분석 왜곡 => 분석시 제외
+  IQR:
+     IQR : 3분위 - 1분위
+     1분위 - (IQR*1.5) <  유효범위 < 3분위 + (IQR*1.5)
+
+  Z-Score: 표준편차 단위
+    +-1 : 68%
+    +-2 : 95%
+    +-3 : 99.7%
+
+    이상치 식별할때 +-2, +-3 상용합니다.
+   
+
+결측치
+  누락된 값 , 데이터분석 악영향 => 제거, 값대체(평균,중위값,최빈값,앞자료,뒤자료 등)
+  isnull : 결측치 탐색
+  dropna : 결측치 제거
+  fillna : 결측치 값 대체
+  fillna(method='ffill') : 결측치의 앞 자료로 대체
+  fillna(method='bfill') : 결측치의 뒤 자료로 대체
+  shift : 자료를 전체적으로 이동시킬때 사용
+
+중복데이터
+  duplicated() : 중복데이터 탐색
+  drop_duplicates() : 중복데이터제거(keep 기본값이 first)
+  drop_duplicates(keep='first') : 중복데이터 맨 앞 자료를 제외하고 제거
+  drop_duplicates(keep='last')  : 중복데이터 맨 뒤 자료를 제외하고 제거
+  drop_duplicates(keep=False)   : 중복데이터 모든자료를 제거
+
+
+값조정
+  표준화:
+    - 단위조정
+    - 표준정규분포화 : StandardSclaer  fit_transform
+  정규화
+    - MinMaxScaler  fit_transform
+
+  더미변수
+    라벨엔코더 : LabelEncoder() 
+    오리, 토끼, 양 => 1,2,3
+
+    원핫인코딩 : OneHotEncoder,get_dummies
+    오리  토끼    양
+    1      0      0
+    0      1      0
+    0      0      1
+
+시리얼 데이터
+  str, Timestamp, Period 
+  
+
     
 
 
