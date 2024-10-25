@@ -144,6 +144,41 @@ Day 3
 
 시리얼 데이터
   str, Timestamp, Period 
+
+Day 4
+함수매핑
+  apply  : 데이터프레임의 열, 행
+  map    : 시리즈
+  pipe   : 데이터프레임, 체이닝
+
+
+열재구성
+  # 데이터프레임 생성
+  data = pd.DataFrame({'A': [1, 2], 'B': [3, 4], 'C': [5, 6]})
+  # 열 순서 변경
+  data = data[['C', 'A', 'B']]
+
+그룹연산
+  df.groupby('컬럼명')
+  통계함수도 상용합니다.
+  agg() 메소드를 사용하여 그룹 연산을 수행한다
+
+데이터프레임 합치기
+  수평결합
+     merge
+     join  (교집합)
+  수직결합
+     concat
+
+멀티인덱스
+  df.index = pl.Multiindex.from_tuples([(1차인덱스,2차인덱스),(1차인덱스,2차인덱스)])
+
+피벗
+  # 데이터프레임 생성
+    df = pd.DataFrame({'Date': ['2021-01-01', '2021-01-01', '2021-01-02'],'Category': ['A', 'B', 'A'], 'Value': [1, 2, 3]})
+  # 피벗 테이블 생성
+    pivot_table = data.pivot(index='Date', columns='Category', values='Value')
+
   
 
     
